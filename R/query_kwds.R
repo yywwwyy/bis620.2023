@@ -23,5 +23,5 @@ query_kwds <- function(d, kwds, column, ignore_case = TRUE, match_all = FALSE) {
     paste0(column, like, "'", kwds, "'"),
     collapse = ifelse(match_all, " AND ", " OR ")
   )
-  dplyr::filter(d, sql(query))
+  filter(d, sql(query))
 }

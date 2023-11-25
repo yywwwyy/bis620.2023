@@ -7,18 +7,18 @@
 #' @export
 runshinyapp <- function(...) {
   max_num_studies = 1000
-  data(studies)
-  data(sponsors)
-  data(reported_events)
-  data(phase_type)
-  data(outcomes)
-  data(interventions)
-  data(eligibilities)
-  data(designs)
-  data(country_list)
-  data(countries)
-  data(conditions)
-  data(brief_summaries)
+  # data(studies)
+  # data(sponsors)
+  # data(reported_events)
+  # data(phase_type)
+  # data(outcomes)
+  # data(interventions)
+  # data(eligibilities)
+  # data(designs)
+  # data(country_list)
+  # data(countries)
+  # data(conditions)
+  # data(brief_summaries)
 
 
   # Define UI for application that draws a histogram
