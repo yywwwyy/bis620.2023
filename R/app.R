@@ -1,9 +1,25 @@
-
-
+#' @title Run the shiny
+#' @param ... additional argument passed to shiny app
 #' @import shiny
+#' @importFrom shiny fluidPage titlePanel navbarPage tabPanel sidebarLayout sidebarPanel textInput sliderInput dateInput selectInput checkboxGroupInput mainPanel tabsetPanel plotOutput dataTableOutput renderPlot renderDataTable renderUI htmlOutput shinyApp
+#' @importFrom dplyr filter collect mutate rename distinct left_join
+#' @importFrom ggplot2 ggplot aes geom_bar theme_minimal labs position_dodge
 #' @export
 runshinyapp <- function(...) {
   max_num_studies = 1000
+  data(studies)
+  data(sponsors)
+  data(reported_events)
+  data(phase_type)
+  data(outcomes)
+  data(interventions)
+  data(eligibilities)
+  data(designs)
+  data(country_list)
+  data(countries)
+  data(conditions)
+  data(brief_summaries)
+
 
   # Define UI for application that draws a histogram
   ui <- fluidPage(
@@ -179,7 +195,7 @@ runshinyapp <- function(...) {
           strsplit(",") |>
           unlist() |>
           trimws()
-        ret = query_kwds(studies, si, "brief_title", match_all = TRUE)
+        ret = query_kwds(studies, si, "brief_title", match_all = TRUE)  #studies = data(studies)
       } else {
         ret = studies
       }
@@ -202,18 +218,18 @@ runshinyapp <- function(...) {
         collect()
 
       # Then calculate the duration in months
-      ret <- ret %>%
+      ret <- ret |>
         mutate(duration = calculate_duration(start_date, completion_date, "months"))
 
       # Apply the duration filter
       if (!is.null(input$durationRange)) {
-        ret <- ret %>%
+        ret <- ret |>
           filter(duration >= input$durationRange[1] & duration <= input$durationRange[2])
       }
 
       # filter the status according to user input
       if(!is.null(input$status)){
-        ret <- ret %>%
+        ret <- ret |>
           filter_status(input$status)
       }
 
@@ -221,7 +237,7 @@ runshinyapp <- function(...) {
       if (!is.null(input$startDateFilter)) {
         start_date_as_date <- tryCatch(as.Date(input$startDateFilter), error = function(e) NA)
         if(!is.na(start_date_as_date)) {
-          ret <- ret %>%
+          ret <- ret |>
             filter(as.Date(start_date) >= start_date_as_date)
         }
       }

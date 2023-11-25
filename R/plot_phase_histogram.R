@@ -2,7 +2,7 @@
 #' @param x the database table.
 #' @importFrom dplyr summarize right_join group_by select
 #' @importFrom tidyr as_tibble
-#' @importFrom ggplot2 ggplot aes geom_col xlab ylab
+#' @importFrom ggplot2 ggplot aes geom_col theme_bw xlab ylab
 #' @export
 plot_phase_histogram = function(x) {
   # Fix the phase histogram so that the x-axis values

@@ -16,11 +16,7 @@ Imports:
   ggplot2,
   purrr,
   tidyr,
-  shiny,
-  maps,
-  DT,
-  DBI,
-  duckdb (== 0.8.1)
+  shiny
 Suggests: 
     knitr,
     rmarkdown,

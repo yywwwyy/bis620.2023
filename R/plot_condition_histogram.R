@@ -2,7 +2,9 @@
 #' @description The function gives a histogram showing the conditions that trials in a query are examining.
 #' @param d the database table.
 #' @importFrom dplyr summarize group_by select arrange
-#' @importFrom ggplot2 ggplot aes geom_col xlab ylab coord_flip
+#' @importFrom ggplot2 ggplot aes geom_col theme_bw xlab ylab coord_flip
+#' @importFrom utils head
+#' @importFrom stats reorder
 plot_condition_histogram = function(d) {
   d$condition_name[is.na(d$condition_name)] = "NA"
   d <- d |>

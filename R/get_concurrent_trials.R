@@ -4,6 +4,7 @@
 #' concurrent trials at that date.
 #' @importFrom tidyr pivot_longer
 #' @importFrom dplyr select distinct arrange rename
+#' @importFrom stats na.omit
 #' @importFrom purrr map_dbl
 get_concurrent_trials = function(d) {
   # Get all of the unique dates.
