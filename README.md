@@ -65,11 +65,31 @@ accel |>
 
 ``` r
 
-# studies |> head(1000)|>
-#   exclude_query(ducktest,"Rates, Pembrolizumab","brief_title")
-# calculate_duration("2020-01-01", "2020-01-31", "days")
-# calculate_duration("2020-01-01", "2020-02-01", "months")
-# calculate_duration("2020-01-01", "2021-01-01", "years")
+studies |> head(1000)|>
+   exclude_query("Rates, Pembrolizumab","brief_title")
+#> # A tibble: 998 × 73
+#>    nct_id   nlm_download_date_de…¹ study_first_submitte…² results_first_submit…³
+#>    <chr>    <lgl>                  <date>                 <date>                
+#>  1 NCT0064… NA                     2008-03-21             NA                    
+#>  2 NCT0423… NA                     2020-01-13             NA                    
+#>  3 NCT0279… NA                     2016-05-31             NA                    
+#>  4 NCT0418… NA                     2019-11-21             NA                    
+#>  5 NCT0279… NA                     2016-06-04             NA                    
+#>  6 NCT0096… NA                     2009-08-19             NA                    
+#>  7 NCT0423… NA                     2019-12-31             NA                    
+#>  8 NCT0096… NA                     2009-08-19             NA                    
+#>  9 NCT0130… NA                     2011-02-18             2011-11-16            
+#> 10 NCT0064… NA                     2008-03-24             NA                    
+#> # ℹ 988 more rows
+#> # ℹ abbreviated names: ¹​nlm_download_date_description,
+#> #   ²​study_first_submitted_date, ³​results_first_submitted_date
+#> # ℹ 69 more variables: disposition_first_submitted_date <date>,
+#> #   last_update_submitted_date <date>, study_first_submitted_qc_date <date>,
+#> #   study_first_posted_date <date>, study_first_posted_date_type <chr>,
+#> #   results_first_submitted_qc_date <date>, results_first_posted_date <date>, …
+#calculate_duration("2020-01-01", "2020-01-31", "days")
+#calculate_duration("2020-01-01", "2020-02-01", "months")
+#calculate_duration("2020-01-01", "2021-01-01", "years")
 ```
 
 ### link to the coverage page and lint results

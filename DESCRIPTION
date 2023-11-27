@@ -1,7 +1,7 @@
 Package: bis620.2023
 Type: Package
 Title: Functions and Data for the BIS620 (2023) Class
-Version: 0.1.0
+Version: 0.1.1
 Author: Michael J. Kane, Weiyi You, Yuchen Zhu, Peiyuan Gao
 Maintainer: The package maintainer <michael.kane@yale.edu>, <weiyi.you@yale.edu>, <yuchen.zhu.yz2335@yale.edu>, <peiyuan.gao@yale.edu>
 Description: Functions and data captured for class. Also an shiny app we implemented in Midterm
