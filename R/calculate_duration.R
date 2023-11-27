@@ -4,6 +4,7 @@
 #' @param start_date start_date of the trail
 #' @param end_date completion date of the trail
 #' @param unit end unit which can days, months, years
+#' @export
 calculate_duration <- function(start_date, end_date, unit = "days") {
   # Convert the start and end dates to Date objects
   start_date <- as.Date(start_date)

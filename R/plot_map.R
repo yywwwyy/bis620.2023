@@ -4,6 +4,7 @@
 #' @importFrom dplyr select group_by filter summarize arrange collect n
 #' @importFrom ggplot2 ggplot aes geom_polygon map_data
 #' @import maps
+#' @export
 plot_map = function(x) {
   x = x |>
     select(nct_id, country) |>

@@ -15,7 +15,9 @@ visualization of clinical trial data from ctgov. It includes a Shiny
 application (app.R) and a suite of functions that streamline the process
 of querying, processing, and presenting clinical trials research data.
 
-## Installation
+## Installation(takes nearly 30 mins, please be patient)
+
+### 
 
 You can install the development version of bis620.2023 from
 [GitHub](https://github.com/) with:
@@ -64,7 +66,7 @@ accel |>
 ``` r
 
 # studies |> head(1000)|>
-#   exclude_query(ducktest,"Rates, Pembrolizumab")
+#   exclude_query(ducktest,"Rates, Pembrolizumab","brief_title")
 # calculate_duration("2020-01-01", "2020-01-31", "days")
 # calculate_duration("2020-01-01", "2020-02-01", "months")
 # calculate_duration("2020-01-01", "2021-01-01", "years")
