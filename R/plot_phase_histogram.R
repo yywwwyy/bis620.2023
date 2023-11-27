@@ -1,6 +1,6 @@
 #' @title Create a histogram of the phases returned by a brief title keyword search
 #' @param x the database table.
-#' @importFrom dplyr summarize right_join group_by select
+#' @importFrom dplyr summarize right_join group_by select n
 #' @importFrom tidyr as_tibble
 #' @importFrom ggplot2 ggplot aes geom_col theme_bw xlab ylab
 #' @export

@@ -71,7 +71,19 @@ usethis::use_data(accel, overwrite = TRUE)
 # phases_type[1][is.na(phases_type[[1]]), ] = "NA"
 # phase_type = phases_type[1]
 #
-#
+# studies <- studies |> collect()
+# sponsors <- sponsors |> collect()
+# outcomes <- outcomes |> collect()
+# interventions <- interventions |> collect()
+# reported_events <- reported_events |> collect()
+# brief_summaries <- brief_summaries |> collect()
+# designs <- designs |> collect()
+# eligibilities <- eligibilities |> collect() |> head(200000)
+# conditions <- conditions |> collect()
+# countries <- countries |> collect()
+# conditions <- conditions |> collect()
+# country_list <- country_list |> collect()
+# phase_type <- phase_type |> collect()
 #
 # usethis::use_data(studies, overwrite = TRUE)
 # usethis::use_data(sponsors, overwrite = TRUE)
@@ -86,4 +98,4 @@ usethis::use_data(accel, overwrite = TRUE)
 # usethis::use_data(country_list, overwrite = TRUE)
 # usethis::use_data(phase_type, overwrite = TRUE)
 # duckdb::dbDisconnect(con)
-
+#

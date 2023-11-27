@@ -2,11 +2,12 @@
 #' @description The function provides the HTML code that takes tables' variables from users.
 #' @param info the database table contain the basic information of the studies table.
 #' @param elig the database table contain the information of the eligibilities table.
+#' @return the string for HTML code
 #' @export
 show_info <- function(info,elig){
   #nct_id, brief_title,phase, start_date, completion_date,country,source_class
   #nct_id, sampling_method, gender, minimum_age, maximum_age, population,criteria
-  sprintf('
+  info <- sprintf('
   <div class="container">
   <h3>Information</h3>
   <table id="infoTB">
@@ -81,4 +82,6 @@ show_info <- function(info,elig){
   <br />
   ',info$nct_id,info$phase,info$country,info$start_date,info$completion_date,
           elig$sampling_method, elig$gender, elig$minimum_age, elig$maximum_age, elig$population)
+
+  return(info)
 }

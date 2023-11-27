@@ -1,24 +1,12 @@
 #' @title Run the shiny
 #' @param ... additional argument passed to shiny app
 #' @import shiny
-#' @importFrom shiny fluidPage titlePanel navbarPage tabPanel sidebarLayout sidebarPanel textInput sliderInput dateInput selectInput checkboxGroupInput mainPanel tabsetPanel plotOutput dataTableOutput renderPlot renderDataTable renderUI htmlOutput shinyApp
-#' @importFrom dplyr filter collect mutate rename distinct left_join
+#' @importFrom shiny fluidPage titlePanel navbarPage tabPanel sidebarLayout sidebarPanel textInput sliderInput dateInput selectInput checkboxGroupInput mainPanel tabsetPanel plotOutput dataTableOutput uiOutput renderPlot renderDataTable renderUI htmlOutput shinyApp HTML
+#' @importFrom dplyr filter collect mutate rename distinct left_join select
 #' @importFrom ggplot2 ggplot aes geom_bar theme_minimal labs position_dodge
 #' @export
 runshinyapp <- function(...) {
   max_num_studies = 1000
-  # data(studies)
-  # data(sponsors)
-  # data(reported_events)
-  # data(phase_type)
-  # data(outcomes)
-  # data(interventions)
-  # data(eligibilities)
-  # data(designs)
-  # data(country_list)
-  # data(countries)
-  # data(conditions)
-  # data(brief_summaries)
 
 
   # Define UI for application that draws a histogram
@@ -94,7 +82,7 @@ runshinyapp <- function(...) {
             color: blue;
             font-weight: bold;
         }
-                    "))),
+        "))),
     # Application title
     titlePanel("BIS 620 2023 Midterm-Project: Clinical Trials Query"),
     navbarPage(
@@ -161,17 +149,17 @@ runshinyapp <- function(...) {
                sidebarLayout(
                  sidebarPanel(
                    textInput("nct_id_wanted",
-                             "Please enter NCT ID you want to search, e.g. NCT04538079",
-                             value = "NCT04538079"),
-                   dataTableOutput("single_study_information")
+                             "Please enter NCT ID you want to search, e.g. NCT04538079"
+                             ,value="NCT04538079"
+                             ),
+                   #dataTableOutput("single_study_information")
                  ),
                  # Show a plot of
                  mainPanel(
                    tabsetPanel(
                      type = "tabs",
                      #position = "above",
-                     tabPanel("Infomation", uiOutput("basic_info"),
-                              htmlOutput("long_desc")),
+                     tabPanel("Infomation",uiOutput("basic_info"), uiOutput("long_desc")),
                      tabPanel("Condition",
                               #plotOutput("single_study_condition_plot"),
                               dataTableOutput("single_study_conditions")),
@@ -265,9 +253,10 @@ runshinyapp <- function(...) {
       # } else {
       #   nct_table = studies
       # }
-      nct_table |>
+      outputc <- nct_table |>
         head(max_num_studies) |>
         collect()
+      return(outputc)
     })
 
     #sponsors
@@ -298,9 +287,10 @@ runshinyapp <- function(...) {
       des_table = brief_summaries |>
         filter(nct_id == !!di)|>
         distinct()
-      des_table |>
+      des_table1 <- des_table |>
         head(1) |>
         collect()
+      return(des_table1)
     })
     # eligibilities
     get_nct_id_with_elig = reactive({
@@ -309,9 +299,10 @@ runshinyapp <- function(...) {
       eli_table = eligibilities |>
         filter(nct_id == !!ei)|>
         distinct()
-      eli_table |>
+      output <- eli_table |>
         collect()|>
         head(1)
+      return(output)
     })
 
     output$phase_plot = renderPlot({
@@ -352,13 +343,13 @@ runshinyapp <- function(...) {
     })
 
     # debug use
-    output$original_table = renderDataTable({
-      studies|> select(nct_id, country,brief_title, start_date, completion_date) |>
-        rename(`NCT ID` = nct_id, `Country` = country,`Brief Title` = brief_title,
-               `Start Date` = start_date, `Completion Date` = completion_date) |>
-        head(max_num_studies) |>
-        collect()
-    })
+    # output$original_table = renderDataTable({
+    #   studies|> select(nct_id, country,brief_title, start_date, completion_date) |>
+    #     rename(`NCT ID` = nct_id, `Country` = country,`Brief Title` = brief_title,
+    #            `Start Date` = start_date, `Completion Date` = completion_date) |>
+    #     head(max_num_studies) |>
+    #     collect()
+    # })
 
     output$basic_info = renderUI({
       single_study_for_info = get_nct_id_with_conditions()
@@ -368,30 +359,31 @@ runshinyapp <- function(...) {
         distinct() |>
         collect() |>
         head(1)
-      HTML(show_info(single_study_for_info, single_study_for_elig))
+      html <- show_info(single_study_for_info, single_study_for_elig)
+      #print(html)
+      #HTML("<div>Hello, this is a test.</div>")
+      HTML(html)
     })
 
 
     output$long_desc = renderUI({
-      #<div class=\"container2\"> </div>
       desc = get_nct_id_with_long_desc() |>
-        select(long_description) |>
-        collect()|>
-        head(1)
-      HTML(paste("<div class=\"container2\"> <div ><span class=\"blue-text\">Description:</span> </div>","<font color=\"black\"><b>",desc[[1]],"</b></font></div>
-               <br /><br />"))
+                   select(long_description) |>
+                   collect() |>
+                   head(1)
+      #HTML("<div>Hello, this is a test.</div>")
+      HTML(paste("<div class=\"container2\"> <div ><span class=\"blue-text\">Description:</span> </div>","<font color=\"black\"><b>",desc[[1]],"</b></font></div><br /><br />"))
     })
 
 
-    # output$single_study_condition_plot = renderPlot({
-    #
-    # })
-
+    # doesn't work in package but doesn't affect final result
     output$single_study_information =  renderDataTable({
       get_nct_id_with_conditions() |>
         select(nct_id, brief_title,phase, start_date, completion_date) |>
-        unique()
-    },options = list(pageLength = 1,searching=FALSE,paging=FALSE,scrollX=TRUE,scrollY=TRUE,rownames = FALSE))
+        unique()},
+        options = list(pageLength = 1,searching=FALSE,paging=FALSE,scrollX=TRUE,scrollY=TRUE,rownames = FALSE)
+    )
+
 
     output$single_study_conditions = renderDataTable({
       get_nct_id_with_conditions() |>

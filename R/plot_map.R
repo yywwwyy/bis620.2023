@@ -1,8 +1,9 @@
 #' @title Create a world map of study density using the studies dataframe that returned after
 #' filtered by the user
 #' @param x the dataset to get the number of trails performed in each countries.
-#' @importFrom dplyr select group_by filter summarize arrange collect
+#' @importFrom dplyr select group_by filter summarize arrange collect n
 #' @importFrom ggplot2 ggplot aes geom_polygon map_data
+#' @import maps
 plot_map = function(x) {
   x = x |>
     select(nct_id, country) |>

@@ -8,20 +8,39 @@
 #' (default TRUE)
 #' @param match_all should we look for values that match all of the keywords
 #' (intersection) or any of the keywords (union)? (default FALSE; union).
-#' @importFrom dplyr filter
+#' @importFrom dplyr filter sym
+#' @importFrom stringr str_detect regex
 #' @export
-query_kwds <- function(d, kwds, column, ignore_case = TRUE, match_all = FALSE) {
-  kwds <- kwds[kwds != ""]
-  kwds <- paste0("%", kwds, "%") |>
-    gsub("'", "''", x = _)
-  if (ignore_case) {
-    like <- " ilike "
-  } else{
-    like <- " like "
+query_kwds<- function(d, kwds, column, ignore_case = TRUE, match_all = FALSE) {
+  # Define the filter condition based on match_all
+  if (match_all) {
+    result <- d |>
+      filter(Reduce(`&`, lapply(kwds, function(s) str_detect(!!sym(column), regex(s, ignore_case = ignore_case)))))
+  } else {
+    #query <- paste0(keywords, collapse = "|")
+    result <- d |>
+      filter(Reduce(`|`, lapply(kwds, function(s) str_detect(!!sym(column), regex(s, ignore_case = ignore_case)))))
   }
-  query <- paste(
-    paste0(column, like, "'", kwds, "'"),
-    collapse = ifelse(match_all, " AND ", " OR ")
-  )
-  filter(d, sql(query))
+  # Return the result
+  return(result)
 }
+
+
+
+# query_kwds <- function(d, kwds, column, ignore_case = TRUE, match_all = FALSE) {
+#   kwds <- kwds[kwds != ""]
+#   kwds <- paste0("%", kwds, "%") |>
+#     gsub("'", "''", x = _)
+#   if (ignore_case) {
+#     like <- " ilike "
+#   } else{
+#     like <- " like "
+#   }
+#   query <- paste(
+#     paste0(column, like, "'", kwds, "'"),
+#     collapse = ifelse(match_all, " AND ", " OR ")
+#   )
+#   filter(d, sql(query))
+# }
+
+

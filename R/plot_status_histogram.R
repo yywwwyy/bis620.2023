@@ -1,6 +1,6 @@
 #' @title Create a histogram of the status of the study returned by a brief title keyword search
 #' @param x the database table.
-#' @importFrom dplyr select group_by summarize
+#' @importFrom dplyr select group_by summarize n
 #' @importFrom ggplot2 ggplot aes geom_col theme_bw xlab ylab coord_flip
 #' @export
 plot_status_histogram = function(x) {

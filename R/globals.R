@@ -1,1 +1,1 @@
-utils::globalVariables(c("X", "Y", "Z", "Acceleration","overall_status","name","value","condition_name","country","nct_id","group","long","lat","n","phase_type","intervention_type","outcome_type","count","country_list","start_date","completion_date","duration"))
+utils::globalVariables(c("X", "Y", "Z", "Acceleration","overall_status","name","value","condition_name","country","nct_id","group","long","lat","n","phase_type","intervention_type","outcome_type","count","country_list","start_date","completion_date","duration", ))
