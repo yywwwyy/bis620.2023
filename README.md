@@ -24,7 +24,7 @@ You can install the development version of bis620.2023 from
 
 ``` r
 # install.packages("devtools")
-devtools::install_github("yywwwyy/bis620.2023")
+#devtools::install_github("yywwwyy/bis620.2023")
 ```
 
 ## Features
@@ -87,10 +87,22 @@ studies |> head(1000)|>
 #> #   last_update_submitted_date <date>, study_first_submitted_qc_date <date>,
 #> #   study_first_posted_date <date>, study_first_posted_date_type <chr>,
 #> #   results_first_submitted_qc_date <date>, results_first_posted_date <date>, …
-#calculate_duration("2020-01-01", "2020-01-31", "days")
-#calculate_duration("2020-01-01", "2020-02-01", "months")
-#calculate_duration("2020-01-01", "2021-01-01", "years")
+calculate_duration("2020-01-01", "2020-01-31", "days")
+#> [1] 30
+calculate_duration("2020-01-01", "2020-02-01", "months")
+#> [1] 1
+calculate_duration("2020-01-01", "2021-01-01", "years")
+#> [1] 1
+plot_map(studies)
 ```
+
+<img src="man/figures/README-example-2.png" width="100%" />
+
+``` r
+plot_country_histogram(studies)
+```
+
+<img src="man/figures/README-example-3.png" width="100%" />
 
 ### link to the coverage page and lint results
 

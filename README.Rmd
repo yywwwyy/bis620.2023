@@ -28,9 +28,9 @@ This bis620.2023 package is designed to facilitate the analysis and visualizatio
 
 You can install the development version of bis620.2023 from [GitHub](https://github.com/) with:
 
-``` r
+``` {r}
 # install.packages("devtools")
-devtools::install_github("yywwwyy/bis620.2023")
+#devtools::install_github("yywwwyy/bis620.2023")
 ```
 ## Features
 calculate_duration.R: Calculate the duration between clinical trial start and end dates.
@@ -66,9 +66,11 @@ accel |>
 
 studies |> head(1000)|>
    exclude_query("Rates, Pembrolizumab","brief_title")
-#calculate_duration("2020-01-01", "2020-01-31", "days")
-#calculate_duration("2020-01-01", "2020-02-01", "months")
-#calculate_duration("2020-01-01", "2021-01-01", "years")
+calculate_duration("2020-01-01", "2020-01-31", "days")
+calculate_duration("2020-01-01", "2020-02-01", "months")
+calculate_duration("2020-01-01", "2021-01-01", "years")
+plot_map(studies)
+plot_country_histogram(studies)
 ```
 
 ### link to the coverage page and lint results
