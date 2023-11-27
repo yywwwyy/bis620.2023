@@ -1,1 +1,7 @@
-utils::globalVariables(c("X", "Y", "Z", "Acceleration","overall_status","name","value","condition_name","country","nct_id","group","long","lat","n","phase_type","intervention_type","outcome_type","count","country_list","start_date","completion_date","duration", ))
+utils::globalVariables(c("X", "Y", "Z", "Acceleration","overall_status","name","value","condition_name","country",
+                         "nct_id","group","long","lat","n","phase_type","intervention_type","outcome_type","count",
+                         "country_list","start_date","completion_date","duration", "phase","studies","source_class",
+                         "source_class","source_class","outcomes","interventions","sponsors","reported_events",
+                         "brief_summaries","eligibilities","downcase_condition_name","brief_title","long_description","agency_class",
+                         "lead_or_collaborator","time_frame","event_type","subjects_affected","subjects_at_risk","adverse_event_term",
+                         "organ_system","adverse_event_term","agency_class",""))
