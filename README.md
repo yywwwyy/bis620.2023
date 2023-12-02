@@ -7,7 +7,6 @@
 
 [![R-CMD-check](https://github.com/yywwwyy/bis620.2023/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/yywwwyy/bis620.2023/actions/workflows/R-CMD-check.yaml)
 [![test-coverage](https://github.com/yywwwyy/bis620.2023/actions/workflows/test-coverage.yaml/badge.svg)](https://github.com/yywwwyy/bis620.2023/actions/workflows/test-coverage.yaml)
-[![lint](https://github.com/yywwwyy/bis620.2023/actions/workflows/lint.yaml/badge.svg)](https://github.com/yywwwyy/bis620.2023/actions/workflows/lint.yaml)
 <!-- badges: end -->
 
 This bis620.2023 package is designed to facilitate the analysis and
@@ -109,5 +108,3 @@ plot_country_histogram(studies)
 # \[R-CMD-check\]<https://github.com/yywwwyy/bis620.2023/actions/workflows/R-CMD-check.yaml>
 
 # \[test-coverage\]<https://github.com/yywwwyy/bis620.2023/actions/workflows/test-coverage.yaml>
-
-# \[lint\]<https://github.com/yywwwyy/bis620.2023/actions/workflows/lint.yaml>
